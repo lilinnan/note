@@ -151,10 +151,7 @@ public:
 
 我们就可以在const方法中修改变量了
 
-<hr>
+************
 
 [https://www.bilibili.com/video/BV1qy4y1e7ds](https://www.bilibili.com/video/BV1qy4y1e7ds)
 
-<div style="position: relative; width: 100%; padding-top: calc(100% * 1200 / 1600); position: unset;">
-    <iframe src="//player.bilibili.com/player.html?bvid=BV1qy4y1e7ds" style="position: absolute; width: 100%; height: 100%; top: 0;"></iframe>
-</div>

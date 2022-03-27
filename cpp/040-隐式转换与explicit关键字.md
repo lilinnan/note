@@ -78,9 +78,8 @@ int main() {
 }
 ```
 
-<hr>
+********
+
+
 [https://www.bilibili.com/video/BV1G54y147dD](https://www.bilibili.com/video/BV1G54y147dD)
 
-<div style="position: relative; width: 100%; padding-top: calc(100% * 1200 / 1600); position: unset;">
-    <iframe src="//player.bilibili.com/player.html?bvid=BV1G54y147dD" style="position: absolute; width: 100%; height: 100%; top: 0;"></iframe>
-</div>

@@ -30,7 +30,7 @@ public:
         this->y = y;
         
         
-        //我们还可以对this解引用，并将其传递到外部
+        //这里是24行 我们还可以对this解引用，并将其传递到外部
         print(*this);
         //在非const方法中其实就是
         Entity &entity = *this;
@@ -65,10 +65,7 @@ int main() {
 }
 ```
 
-<hr>
+******************
+
 
 [https://www.bilibili.com/video/BV1qo4y1o7W5](https://www.bilibili.com/video/BV1qo4y1o7W5)
-
-<div style="position: relative; width: 100%; padding-top: calc(100% * 1200 / 1600); position: unset;">
-    <iframe src="//player.bilibili.com/player.html?bvid=BV1qo4y1o7W5" style="position: absolute; width: 100%; height: 100%; top: 0;"></iframe>
-</div>
