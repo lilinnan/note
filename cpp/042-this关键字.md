@@ -21,7 +21,7 @@ private:
     float y;
 public:
     Entity(float x, float y) {
-        //this实际上就是这样的
+        //this实际上就是这样的类型
         Entity *const &real = this;
         //因为形参和实际的成员变量名称相同
         //所以x = x肯定是不行的
