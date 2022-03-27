@@ -1,3 +1,5 @@
+# 034-const 
+
 这个东西是用来声明常量的
 
 例如 const int a = 5; 表示声明了一个int，值为5，它不会变
@@ -151,6 +153,8 @@ public:
 
 <hr>
 
-https://www.bilibili.com/video/BV1qy4y1e7ds
+[https://www.bilibili.com/video/BV1qy4y1e7ds](https://www.bilibili.com/video/BV1qy4y1e7ds)
 
-<iframe src="//player.bilibili.com/player.html?aid=543569353&bvid=BV1qy4y1e7ds&cid=276691378&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="640"> </iframe>
+<div style="position: relative; width: 100%; padding-top: calc(100% * 1200 / 1600); position: unset;">
+    <iframe src="//player.bilibili.com/player.html?bvid=BV1qy4y1e7ds" style="position: absolute; width: 100%; height: 100%; top: 0;"></iframe>
+</div>

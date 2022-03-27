@@ -1,3 +1,5 @@
+# 040-隐式转换与explicit关键字
+
 c++实际上允许编译器堆代码执行一次隐式转换，再两种类型之间执行隐式转换，不需要强制转换，像下面这样
 
 ```c++
@@ -77,8 +79,8 @@ int main() {
 ```
 
 <hr>
+[https://www.bilibili.com/video/BV1G54y147dD](https://www.bilibili.com/video/BV1G54y147dD)
 
-https://www.bilibili.com/video/BV1G54y147dD/
-
-<iframe src="//player.bilibili.com/player.html?aid=843522230&bvid=BV1G54y147dD&cid=280297430&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" height="640" > </iframe>
-
+<div style="position: relative; width: 100%; padding-top: calc(100% * 1200 / 1600); position: unset;">
+    <iframe src="//player.bilibili.com/player.html?bvid=BV1G54y147dD" style="position: absolute; width: 100%; height: 100%; top: 0;"></iframe>
+</div>
