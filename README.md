@@ -16,5 +16,5 @@ https://space.bilibili.com/364152971/channel/collectiondetail?sid=13909
 
 ###### 笔记目录
 
-<a href="../cpp/025-构造函数.md">025-构造函数.md</a>
+- [025-构造函数](./cpp/025-构造函数.md)
 
