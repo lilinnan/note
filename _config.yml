@@ -1,5 +1,6 @@
 theme: jekyll-theme-cayman
 github:
   is_project_page: false
-sitemap:
-    path: sitemap.xml
+url: "https://note.lilinnan.com"
+plugins:
+  - jekyll-sitemap
