@@ -1,4 +1,5 @@
 theme: jekyll-theme-cayman
+lang: zh
 github:
   is_project_page: false
 url: "https://note.lilinnan.com"
