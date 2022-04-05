@@ -1,4 +1,4 @@
-# 047-动态数组(Vector)
+# 047-动态数组Vector
 
 Vector，这个东西其实不应该叫Vector，它其实类似于Java中的ArrayList
 
