@@ -16,10 +16,6 @@ struct Vertex {
     float x;
     float y;
     float z;
-
-    bool operator==(const Vertex &other) const {
-        return x == other.x && y == other.y && z == other.z;
-    }
 };
 
 std::ostream &operator<<(std::ostream &ostream, const Vertex &vertex) {
