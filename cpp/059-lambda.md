@@ -16,7 +16,7 @@ lambda可以让我们不需要函数定义，就可以定义一个函数，它�
 
 什么是捕获？
 
-捕获可以传递= & 或者是值或者啥也不行
+捕获可以传递=、&、this、值或者啥也不传
 
 如果你要在lambda表达式中使用外面的值，像下面这样
 
@@ -40,8 +40,6 @@ auto function = [=]() {
 
 这里就使用了值传递，在使用值传递的情况下，想要在里面修改中值，是不行的，我们需要添加mutable，才可以对值进行修改
 
-
-
 ```c++
 #include <iostream>
 #include <vector>
@@ -61,6 +59,43 @@ int main() {
 ```
 
 如果我们添加了捕获，c类型的函数指针是无法接收这样的lambda的，我们需要使用c++的std::function接收，比c++的函数指针也更加容易理解。
+
+如果我们想要在lambda中调用当前类的某个方法，就需要传递this进去，否则不能调用
+
+```c++
+#include <iostream>
+#include <functional>
+
+class Test {
+private:
+    void test() {
+        std::cout << "Test function was invoke" << std::endl;
+    }
+
+    void runFunction(const std::function<void()> &fun) {
+        fun();
+    }
+
+public:
+    void run() {
+        runFunction([this]() {
+            test();
+        });
+    };
+};
+
+int main() {
+    Test test;
+    test.run();
+    return 0;
+}
+```
+
+> 我终于知道这里为啥写个this了 :laughing:
+>
+> https://cs.android.com/android/platform/superproject/+/master:frameworks/native/services/inputflinger/dispatcher/InputDispatcher.cpp;l=571
+
+
 
 一个使用实例是，在algorithm中有个函数叫做find_if，它接受一个迭代区间与一个函数，并返回首个符合条件的值，像下面这样
 
