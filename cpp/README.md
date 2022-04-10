@@ -47,3 +47,4 @@ c++学习参照的视频为
 - [057-静态数组-stdarray](057-静态数组-stdarray.md)
 - [058-函数指针](058-函数指针.md)
 - [059-lambda](059-lambda.md)
+- [060-为什么不使用using namespace std](060-为什么不使用using namespace std.md)
