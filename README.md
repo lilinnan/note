@@ -5,3 +5,5 @@
 - [C++部分](cpp/README.md)
 
 - [Java部分](java/README.md)
+
+- [算法部分](algorithms/README.md)
