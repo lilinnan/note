@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>购物记账工具</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff0f6;
+            position: relative;
+            min-height: 100vh; /* 确保页面至少满屏 */
+            box-sizing: border-box;
+            padding-bottom: 60px; /* 为固定底部留出空间 */
+        }
+
+        h1 {
+            text-align: center;
+            color: #d81b60;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .item input {
+            flex: 1;
+            margin-right: 10px;
+            padding: 5px;
+            border: 1px solid #fab1ce;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .delete-btn {
+            background-color: #fab1ce;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 5px 10px;
+            font-size: 14px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .total {
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .total input {
+            border: 1px solid #fab1ce;
+            border-radius: 4px;
+            padding: 5px;
+            box-sizing: border-box;
+            width: 100px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #fab1ce;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #d781b7;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #fab1ce;
+            border-radius: 4px;
+            background-color: #fff7fb;
+        }
+
+        .result-item {
+            margin-bottom: 5px;
+        }
+
+        a {
+            text-decoration: none; /* 去除超链接的下划线 */
+            color: inherit;
+        }
+
+        .footer {
+            display: flex;
+            flex-direction: column; /* 使链接垂直排列 */
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #fff0f6;
+            padding: 10px 0;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 480px) {
+            .item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .item input, .delete-btn {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>购物记账工具</h1>
+
+<div id="items-container">
+    <div class="item">
+        <input type="text" placeholder="商品名称" class="item-name" onfocus="this.select()">
+        <input type="number" placeholder="原价" class="item-price" step="0.01" min="0" onfocus="this.select()">
+        <button class="delete-btn" onclick="removeItem(this)">删除</button>
+    </div>
+</div>
+
+<div class="total">
+    <label for="actual-paid">实际花费金额：</label>
+    <input type="number" id="actual-paid" step="0.01" min="0" onfocus="this.select()">
+</div>
+
+<button onclick="addItem()">添加商品</button>
+<button onclick="calculate()">计算实际花费</button>
+
+<div id="result" class="result" style="display:none;"></div>
+
+<script>
+    function addItem() {
+        const container = document.getElementById('items-container');
+        const newItem = document.createElement('div');
+        newItem.className = 'item';
+        newItem.innerHTML = `
+            <input type="text" placeholder="商品名称" class="item-name" onfocus="this.select()">
+            <input type="number" placeholder="原价" class="item-price" step="0.01" min="0" onfocus="this.select()">
+            <button class="delete-btn" onclick="removeItem(this)">删除</button>
+        `;
+        container.appendChild(newItem);
+    }
+
+    function removeItem(button) {
+        const container = document.getElementById('items-container');
+        if (container.children.length > 1) {
+            const item = button.parentElement;
+            item.remove();
+        } else {
+            // 清空最后一个输入框的内容，而不是删除
+            const item = container.firstElementChild;
+            item.querySelector('.item-name').value = '';
+            item.querySelector('.item-price').value = '';
+        }
+    }
+
+    function calculate() {
+        const items = document.querySelectorAll('.item');
+        let totalOriginalPrice = 0;
+        const itemData = [];
+
+        // 清空之前的计算结果
+        const result = document.getElementById('result');
+        result.innerHTML = '';
+        result.style.display = 'none';
+
+        // 验证输入
+        for (let item of items) {
+            const name = item.querySelector('.item-name').value.trim();
+            const priceValue = item.querySelector('.item-price').value;
+            const price = parseFloat(priceValue);
+
+            if (!name || isNaN(price) || price < 0) {
+                alert('请确保所有商品有有效的名称和非负价格。');
+                return;
+            }
+
+            itemData.push({ name, price });
+            totalOriginalPrice += price;
+        }
+
+        const actualPaid = parseFloat(document.getElementById('actual-paid').value);
+        if (isNaN(actualPaid) || actualPaid < 0) {
+            alert('请输入有效的实际花费金额。');
+            return;
+        }
+
+        // 检查如果总原价为0但实际花费大于0，给出提示
+        if (totalOriginalPrice === 0 && actualPaid > 0) {
+            alert('商品总额为0，但实际花费金额大于0，无法进行计算。请检查输入。');
+            return;
+        }
+
+        // 如果总原价为0且实际花费为0，所有商品的调整后价格设为0
+        if (totalOriginalPrice === 0) {
+            itemData.forEach(item => {
+                const resultItem = document.createElement('div');
+                resultItem.className = 'result-item';
+                resultItem.textContent = `${item.name}: 实际花费 0.00 元`;
+                result.appendChild(resultItem);
+            });
+            result.style.display = 'block';
+            return;
+        }
+
+        // 计算调整后的价格
+        let totalAdjustedPrice = 0;
+        const adjustedPrices = itemData.map(item => {
+            const proportion = item.price / totalOriginalPrice;
+            const adjustedPrice = (actualPaid * proportion).toFixed(2);
+            totalAdjustedPrice += parseFloat(adjustedPrice);
+            return { name: item.name, adjustedPrice: parseFloat(adjustedPrice) };
+        });
+
+        // 调整最后一个商品的价格以匹配实际支付的总额
+        const difference = parseFloat((actualPaid - totalAdjustedPrice).toFixed(2));
+        if (adjustedPrices.length > 0) {
+            adjustedPrices[adjustedPrices.length - 1].adjustedPrice += difference;
+        }
+
+        adjustedPrices.forEach(item => {
+            const resultItem = document.createElement('div');
+            resultItem.className = 'result-item';
+            resultItem.textContent = `${item.name}: 实际花费 ${item.adjustedPrice.toFixed(2)} 元`;
+            result.appendChild(resultItem);
+        });
+
+        result.style.display = 'block';
+    }
+</script>
+
+<div class="footer">
+  <a href="https://beian.miit.gov.cn/" 
+     target="_blank"
+     style="display: flex; align-items: center; margin-bottom: 4px;">
+     晋ICP备19012540号-1
+  </a>
+  <a href="https://beian.mps.gov.cn/#/query/webSearch?code=11011402054401" 
+     rel="noreferrer" 
+     target="_blank" 
+     style="display: flex; align-items: center;">
+     <img width="16" height="16" src="https://lilinnan.com/gongan-logo.png" alt="公安图标" style="margin-right: 4px;">
+     京公网安备11011402054401
+  </a>
+</div>
+
+</body>
+</html>
