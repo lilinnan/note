@@ -34,8 +34,20 @@
         {% if site.github.is_project_page %}
         <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
         {% endif %}
-        <span class="site-footer-credits"><a href="https://beian.miit.gov.cn/">晋ICP备19012540号-1</a></span>
-        <span class="site-footer-credits"><a href="https://beian.mps.gov.cn/#/query/webSearch?code=11011402054401" rel="noreferrer" target="_blank">京公网安备11011402054401</a></span>
+        <div style="display: flex; align-items: center;">
+           <a href="https://beian.miit.gov.cn/"
+             target="_blank"
+             style="display: flex; align-items: center;">
+             晋ICP备19012540号-1
+          </a>
+          <a href="https://beian.mps.gov.cn/#/query/webSearch?code=11011402054401" 
+             rel="noreferrer" 
+             target="_blank" 
+             style="display: flex; align-items: center; margin-light: 16px;">
+             <img width="16" height="16" src="./gongan-logo.png" alt="公安图标" style="margin-right: 4px;">
+             京公网安备11011402054401
+          </a>
+        </div>
     </footer>
 </main>
 </body>
