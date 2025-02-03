@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>当前时间</title>
+    <style>
+        /* 页面居中 */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        /* 显示时间的样式 */
+        .time {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="time" id="current-time">00:00:00</div>
+
+    <script>
+        let lastTime = null;  // 使用null初始化，确保第一次时间更新时才开始计算
+
+        // 更新显示时间的函数（只显示到秒）
+        function updateTime() {
+            const now = new Date();
+            let hours = now.getHours().toString().padStart(2, '0');
+            let minutes = now.getMinutes().toString().padStart(2, '0');
+            let seconds = now.getSeconds().toString().padStart(2, '0');
+            const timeString = `${hours}:${minutes}:${seconds}`;
+            document.getElementById('current-time').textContent = timeString; // 更新页面上的时间
+        }
+
+        // 动画回调函数，用来检查时间变化并更新
+        function animate() {
+            const currentTime = new Date().getTime(); // 获取当前时间
+
+            // 如果是第一次或者时间发生变化，更新时间
+            if (lastTime === null || currentTime !== lastTime) {
+                lastTime = currentTime; // 更新上次时间
+                updateTime(); // 更新时间显示
+            }
+
+            // 继续请求动画帧
+            requestAnimationFrame(animate);
+        }
+
+        // 直接调用animate方法来启动动画
+        animate();
+    </script>
+</body>
+</html>
